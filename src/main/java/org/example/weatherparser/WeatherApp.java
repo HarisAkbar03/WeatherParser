@@ -29,9 +29,9 @@ public class WeatherApp extends Application {
                 Objects.requireNonNull(getClass().getResourceAsStream("/images/weather_background.jpg"))
         );
         ImageView backgroundView = new ImageView(backgroundImage);
-        backgroundView.setFitWidth(400);
+        backgroundView.setFitWidth(800);
         backgroundView.setFitHeight(600);
-        System.out.println(getClass().getResourceAsStream("/images/download.jpg") == null ? "Image Not Found!" : "Image Loaded Successfully!");
+        //System.out.println(getClass().getResourceAsStream("/images/download.jpg") == null ? "Image Not Found!" : "Image Loaded Successfully!");
 
 
         // Title Label

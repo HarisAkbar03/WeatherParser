@@ -17,24 +17,36 @@ import java.util.Objects;
 public class WeatherController {
 
     public static void displayWeatherData(List<WeatherRecord> records) {
+        // Calculate average temperature
         double avgTemp = records.stream()
                 .mapToDouble(WeatherRecord::temperature)
                 .average()
                 .orElse(Double.NaN);
 
+        // Define the temperature threshold for hot days
+        double threshold = 30.0;
+
+        // Filter days that have temperature above the threshold (hot days)
+        long hotDays = records.stream()
+                .filter(record -> record.temperature() > threshold)
+                .count();
+
+        // Count rainy days
         long rainyDays = records.stream()
                 .filter(record -> record.precipitation() > 0)
                 .count();
 
-        String reportText = """
-                🌦️ Weather Report
-                ------------------
-                🌡️ Avg Temp: %.2f°C
-                🌧️ Rainy Days: %d
-                """.formatted(avgTemp, rainyDays);
+        // Define the report text, including hot days and rainy days
+        String report = """
+                ===== Weather Report =====
+                Average Temperature: %.2f°C
+                Hot Days (> %.1f°C): %d
+                Rainy Days: %d
+                =========================
+                """.formatted(avgTemp, threshold, hotDays, rainyDays);
 
         // Create the report label
-        Label reportLabel = new Label(reportText);
+        Label reportLabel = new Label(report);
         reportLabel.getStyleClass().add("report-text");
 
         // Create UI Card Effect
@@ -50,7 +62,7 @@ public class WeatherController {
         reportBox.setPadding(new Insets(20));
 
         // Load and display image in the top quarter
-        Image image  = new Image(
+        Image image = new Image(
                 Objects.requireNonNull(WeatherController.class.getResourceAsStream("/images/weather.jpg"))
         ); // Replace with your image path
         ImageView imageView = new ImageView(image);
