@@ -56,27 +56,25 @@ public class WeatherController {
         card.setFill(Color.web("#ffffff"));
         card.setOpacity(0.8);
 
-        // VBox to hold the weather information
         VBox reportBox = new VBox(10, reportLabel);
         reportBox.setAlignment(Pos.CENTER);
         reportBox.setPadding(new Insets(20));
 
-        // Load and display image in the top quarter
         Image image = new Image(
                 Objects.requireNonNull(WeatherController.class.getResourceAsStream("/images/weather.jpg"))
-        ); // Replace with your image path
+        );
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(400);  // Adjust width as needed
-        imageView.setFitHeight(200); // First quarter size (adjust height based on your screen size)
+        imageView.setFitWidth(500);
+        imageView.setFitHeight(400);
 
         // Use BorderPane to manage layout
         BorderPane root = new BorderPane();
-        root.setTop(imageView);      // Place the image in the top
-        root.setCenter(reportBox);   // Place the weather report in the center
+        root.setTop(imageView);
+        root.setCenter(reportBox);
 
         // Create and style the scene
-        Scene scene = new Scene(root, 400, 600);
-        scene.getStylesheets().add(WeatherController.class.getResource("/style.css").toExternalForm());
+        Scene scene = new Scene(root, 500, 600);
+        scene.getStylesheets().add(Objects.requireNonNull(WeatherController.class.getResource("/style.css")).toExternalForm());
 
         // Create and show the stage
         Stage stage = new Stage();

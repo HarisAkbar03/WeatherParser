@@ -24,7 +24,7 @@ public class WeatherApp extends Application {
         // App Icon
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/weather_icon.png"))));
 
-        // Load background image using correct method
+
         Image backgroundImage = new Image(
                 Objects.requireNonNull(getClass().getResourceAsStream("/images/weather_background.jpg"))
         );
