@@ -1,9 +1,10 @@
-/* General Styling */
 .root {
     -fx-font-family: "Arial";
-    -fx-background-color: linear-gradient(to bottom, #2b5876, #4e4376);
+    -fx-background-color: linear-gradient(to right, #2b5876, #4e4376); /* Cool Gradient */
+    -fx-background-size: cover; /* Make image cover the entire background */
+    -fx-background-position: center center;
+    -fx-background-blur: 5; /* Optional: Adding blur effect */
 }
-
 /* Title Styling */
 .title {
     -fx-font-size: 24px;
@@ -33,10 +34,30 @@
 .analyze-button:hover {
     -fx-background-color: #ff5722;
 }
-
 /* Weather Report Styling */
 .report-text {
     -fx-font-size: 18px;
-    -fx-text-fill: #333;
     -fx-font-weight: bold;
+    -fx-text-fill: #fff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 2, 1, 1);
+    -fx-font-family: "Verdana", sans-serif;
+    -fx-padding: 15px;
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-background-radius: 10px;
+    -fx-alignment: center;
+    -fx-margin: 10px;
+    -fx-border-radius: 12px;
+}
+
+/* Add gradient and shadow to the report container */
+.report-container {
+    -fx-background-color: linear-gradient(to right, #00bcd4, #8e2de2);
+    -fx-border-radius: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 2, 3, 3);
+    -fx-padding: 20px;
+}
+
+/* Adding a subtle glow to the text */
+.report-text:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.7), 5, 5, 5, 5);
 }
