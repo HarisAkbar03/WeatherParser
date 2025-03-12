@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class WeatherAnalyzer {
     public static void main(String[] args) {
+
         try {
             List<WeatherRecord> records = CsvParser.parse("weather_data.csv");
 
@@ -20,7 +21,7 @@ public class WeatherAnalyzer {
             double threshold = 30.0;
             List<WeatherRecord> hotDays = records.stream()
                     .filter(record -> record.temperature() > threshold)
-                    .collect(Collectors.toList());
+                    .toList();
 
             // Counting rainy days using Predicate
             Predicate<WeatherRecord> isRainy = record -> record.precipitation() > 0;
