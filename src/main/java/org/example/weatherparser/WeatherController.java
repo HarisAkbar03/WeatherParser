@@ -14,8 +14,45 @@ import javafx.stage.Stage;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The `WeatherController` class is responsible for displaying the weather data
+ * in a styled window with an image and weather report.
+ *
+ * This class calculates average temperature, hot days (above threshold),
+ * and rainy days from the list of weather records and displays them.
+ *
+ * ## Example usage:
+ *
+ * ```java
+ * List<WeatherRecord> records = CsvParser.parse("weather_data.csv");
+ * WeatherController.displayWeatherData(records);
+ * ```
+ */
 public class WeatherController {
 
+    /**
+     * Displays the weather data including average temperature, hot days,
+     * and rainy days in a window.
+     *
+     * This method takes a list of `WeatherRecord` objects, calculates
+     * average temperature, counts the hot days, and counts the rainy days.
+     * It then shows the weather information in a styled window with an image
+     * at the top and the report displayed below.
+     *
+     * ### Features:
+     * - Displays an image at the top (first quarter of the window)
+     * - Displays the weather report below the image.
+     * - Applies custom styles including gradients and drop shadows.
+     *
+     * ## Example usage:
+     *
+     * ```java
+     * List<WeatherRecord> records = CsvParser.parse("weather_data.csv");
+     * WeatherController.displayWeatherData(records);
+     * ```
+     *
+     * @param records List of `WeatherRecord` objects containing weather data.
+     */
     public static void displayWeatherData(List<WeatherRecord> records) {
         // Calculate average temperature
         double avgTemp = records.stream()
@@ -56,25 +93,27 @@ public class WeatherController {
         card.setFill(Color.web("#ffffff"));
         card.setOpacity(0.8);
 
+        // VBox to hold the weather information
         VBox reportBox = new VBox(10, reportLabel);
         reportBox.setAlignment(Pos.CENTER);
         reportBox.setPadding(new Insets(20));
 
+        // Load and display image in the top quarter
         Image image = new Image(
                 Objects.requireNonNull(WeatherController.class.getResourceAsStream("/images/weather.jpg"))
-        );
+        ); // Replace with your image path
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(500);
-        imageView.setFitHeight(400);
+        imageView.setFitWidth(500);  // Adjust width as needed
+        imageView.setFitHeight(400); // First quarter size (adjust height based on your screen size)
 
         // Use BorderPane to manage layout
         BorderPane root = new BorderPane();
-        root.setTop(imageView);
-        root.setCenter(reportBox);
+        root.setTop(imageView);      // Place the image in the top
+        root.setCenter(reportBox);   // Place the weather report in the center
 
         // Create and style the scene
         Scene scene = new Scene(root, 500, 600);
-        scene.getStylesheets().add(Objects.requireNonNull(WeatherController.class.getResource("/style.css")).toExternalForm());
+        scene.getStylesheets().add(WeatherController.class.getResource("/style.css").toExternalForm());
 
         // Create and show the stage
         Stage stage = new Stage();
